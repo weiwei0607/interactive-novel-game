@@ -1,0 +1,22 @@
+{
+  "name": "霧中真相",
+  "short_name": "霧中真相",
+  "description": "互動式推理小說，選擇角色、探索場景、找出兇手",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#020617",
+  "theme_color": "#020617",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
