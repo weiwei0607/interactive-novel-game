@@ -2,6 +2,25 @@
 
 @theme {
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans TC", sans-serif;
+
+  /* 水墨色票 */
+  --color-paper: #ece7da;      /* 宣紙 */
+  --color-paper-2: #f3efe4;    /* 宣紙亮 */
+  --color-paper-3: #e3ddcb;    /* 宣紙暗 */
+  --color-ink: #22262a;        /* 濃墨 */
+  --color-ink-2: #3c434a;      /* 墨 */
+  --color-ink-3: #565b60;      /* 淡墨 */
+  --color-ink-4: #878d93;      /* 墨灰 */
+  --color-cinnabar: #a83227;   /* 硃砂（淺底用） */
+  --color-cinnabar-2: #c4503f; /* 硃砂亮（深底用） */
+  --color-night: #16181b;      /* 夜墨底 */
+  --color-night-2: #1e2125;    /* 夜墨面 */
+  --color-night-3: #2a2e33;    /* 夜墨卡 */
+  --color-verdigris: #3e6b50;  /* 黛綠（成功） */
+  --color-verdigris-2: #6fa183;/* 黛綠亮（深底用） */
+  --color-cinnabar-3: #d98a76; /* 硃砂淺（深底文字用） */
+  --color-cinnabar-deep: #451712; /* 硃砂底（深底 chip 用） */
+  --color-verdigris-deep: #16281e;/* 黛綠底（深底 chip 用） */
 }
 
 @keyframes fadeIn {
@@ -194,11 +213,11 @@
 
 @layer base {
   html {
-    background-color: #020617;
+    background-color: #16181b;
   }
   body {
-    background-color: var(--color-slate-950);
-    color: var(--color-slate-100);
+    background-color: var(--color-night);
+    color: var(--color-paper);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-family: var(--font-sans);
@@ -214,9 +233,64 @@
   }
 }
 
+@keyframes inkIn {
+  from { opacity: 0; filter: blur(8px); }
+  to { opacity: 1; filter: blur(0); }
+}
+
+@keyframes inkDrift1 {
+  from { transform: translateX(-36px); }
+  to { transform: translateX(44px); }
+}
+
+@keyframes inkDrift2 {
+  from { transform: translateX(30px); }
+  to { transform: translateX(-40px); }
+}
+
+@keyframes inkBob {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(3.5px) rotate(0.6deg); }
+}
+
+@keyframes inkFly {
+  from { transform: translate(0, 0); }
+  to { transform: translate(-46px, 10px); }
+}
+
+@keyframes inkSealIn {
+  0% { opacity: 0; transform: scale(1.6) rotate(-9deg); }
+  70% { opacity: 1; transform: scale(0.96) rotate(-3deg); }
+  100% { opacity: 1; transform: scale(1) rotate(-3deg); }
+}
+
 @layer utilities {
   .animate-fade-in {
     animation: fadeIn 0.4s ease-out;
+  }
+  .font-kai {
+    font-family: 'Xingkai TC', 'Xingkai SC', 'Kaiti TC', 'STKaiti', 'DFKai-SB', 'BiauKai', 'Kaiti SC', serif;
+  }
+  .ink-rv {
+    opacity: 0;
+    animation: inkIn 1.8s ease forwards;
+  }
+  .ink-mist1 {
+    animation: inkDrift1 46s ease-in-out infinite alternate;
+  }
+  .ink-mist2 {
+    animation: inkDrift2 64s ease-in-out infinite alternate;
+  }
+  .ink-boat {
+    animation: inkBob 7s ease-in-out infinite;
+  }
+  .ink-birds {
+    animation: inkFly 38s ease-in-out infinite alternate;
+  }
+  .ink-seal {
+    opacity: 0;
+    animation: inkSealIn 0.7s cubic-bezier(0.2, 1.4, 0.4, 1) forwards;
+    animation-delay: 2.6s;
   }
   .animate-slide-up {
     animation: slideUp 0.3s ease-out;
@@ -245,6 +319,20 @@
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
     border: 1px solid rgba(51, 65, 85, 0.4);
+    border-radius: 1rem;
+  }
+  .paper-card {
+    background-color: rgba(243, 239, 228, 0.72);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(34, 38, 42, 0.12);
+    border-radius: 1rem;
+  }
+  .night-card {
+    background-color: rgba(30, 33, 37, 0.68);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(86, 91, 96, 0.28);
     border-radius: 1rem;
   }
   .safe-top {

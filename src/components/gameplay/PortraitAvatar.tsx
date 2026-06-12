@@ -1,3 +1,5 @@
+import CharacterPortrait from './CharacterPortrait';
+
 interface PortraitSet {
   normal?: string;
   angry?: string;
@@ -8,16 +10,21 @@ interface PortraitSet {
 }
 
 interface PortraitTarget {
+  id?: string;
   name: string;
   avatar: string;
+  role?: string;
   portraits?: PortraitSet;
 }
+
+const SIZE_PX: Record<string, number> = { sm: 48, md: 80, lg: 112, xl: 144 };
 
 interface Props {
   target: PortraitTarget;
   mood?: string | null;
   isSpeaking?: boolean;
   size?: 'sm' | 'md' | 'lg' | 'xl';
+  era?: string;
 }
 
 const MOOD_MAP: Record<string, string> = {
@@ -41,7 +48,7 @@ function resolvePortrait(target: PortraitTarget, mood: string | null): string | 
   return target.portraits[key as keyof PortraitSet] ?? target.portraits['normal'] ?? null;
 }
 
-export default function PortraitAvatar({ target, mood = null, isSpeaking = false, size = 'lg' }: Props) {
+export default function PortraitAvatar({ target, mood = null, isSpeaking = false, size = 'lg', era }: Props) {
   const portrait = resolvePortrait(target, mood);
   const moodAnimName = (() => {
     if (isSpeaking) return undefined;
@@ -58,7 +65,7 @@ export default function PortraitAvatar({ target, mood = null, isSpeaking = false
   if (portrait) {
     return (
       <div
-        className={`relative ${sizeClass} rounded-full overflow-hidden border-2 border-amber-500/30 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center`}
+        className={`relative ${sizeClass} rounded-full overflow-hidden border-2 border-ink-3/50 bg-paper-3/40 backdrop-blur-sm flex items-center justify-center`}
         style={{
           animation: isSpeaking ? 'avatarTalk 0.6s ease-in-out infinite' : moodAnimName,
         }}
@@ -67,6 +74,7 @@ export default function PortraitAvatar({ target, mood = null, isSpeaking = false
           src={portrait}
           alt={target.name}
           className="w-full h-full object-cover object-top"
+          style={{ filter: 'grayscale(0.35) sepia(0.18) contrast(1.02)' }}
           loading="eager"
           onError={(e) => {
             const t = e.currentTarget;
@@ -81,12 +89,20 @@ export default function PortraitAvatar({ target, mood = null, isSpeaking = false
 
   return (
     <div
-      className={`relative ${sizeClass} rounded-full flex items-center justify-center border-2 backdrop-blur-sm bg-gradient-to-b from-amber-500/10 to-slate-900/20 border-amber-500/20`}
+      className={`relative ${sizeClass} flex items-center justify-center`}
       style={{
         animation: isSpeaking ? 'avatarTalk 0.6s ease-in-out infinite' : moodAnimName,
       }}
     >
-      {target.avatar}
+      <CharacterPortrait
+        seed={target.id || target.name}
+        name={target.name}
+        role={target.role}
+        avatar={target.avatar}
+        era={era}
+        size={SIZE_PX[size]}
+        speaking={isSpeaking}
+      />
     </div>
   );
 }

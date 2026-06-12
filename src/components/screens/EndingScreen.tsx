@@ -95,9 +95,9 @@ export default function EndingScreen({ story, playerCharacter, accusedId, apiKey
   if (loading || !ending) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center px-6 animate-fade-in">
-        <div className="w-10 h-10 border-4 border-amber-600/30 border-t-amber-500 rounded-full animate-spin mb-4" />
-        <p className="text-slate-400 text-sm">AI 正在撰寫結局...</p>
-        <p className="text-xs text-slate-600 mt-2">約需 5-10 秒</p>
+        <div className="w-10 h-10 border-4 border-cinnabar-2/30 border-t-cinnabar-2 rounded-full animate-spin mb-4" />
+        <p className="text-ink-4 text-sm">AI 正在撰寫結局...</p>
+        <p className="text-xs text-ink-3 mt-2">約需 5-10 秒</p>
       </div>
     );
   }
@@ -107,11 +107,11 @@ export default function EndingScreen({ story, playerCharacter, accusedId, apiKey
       <div className="text-center mb-6">
         {ending.endingTier === 'perfect' && (
           <>
-            <div className="w-16 h-16 rounded-full bg-amber-900/30 flex items-center justify-center mx-auto mb-3">
-              <Trophy className="w-8 h-8 text-amber-400" />
+            <div className="w-16 h-16 rounded-full bg-cinnabar-deep/30 flex items-center justify-center mx-auto mb-3">
+              <Trophy className="w-8 h-8 text-cinnabar-2" />
             </div>
-            <h2 className="text-2xl font-bold text-amber-300 mb-1">完美破案</h2>
-            <p className="text-sm text-amber-500/80">你確實證明了這一切</p>
+            <h2 className="text-2xl font-bold text-cinnabar-3 mb-1">完美破案</h2>
+            <p className="text-sm text-cinnabar-2/80">你確實證明了這一切</p>
           </>
         )}
         {ending.endingTier === 'correct_but_blind' && (
@@ -136,11 +136,11 @@ export default function EndingScreen({ story, playerCharacter, accusedId, apiKey
         )}
         {ending.endingTier === 'wrong_and_blind' && (
           <>
-            <div className="w-16 h-16 rounded-full bg-slate-800/50 flex items-center justify-center mx-auto mb-3">
-              <CloudFog className="w-8 h-8 text-slate-400" />
+            <div className="w-16 h-16 rounded-full bg-night-3/50 flex items-center justify-center mx-auto mb-3">
+              <CloudFog className="w-8 h-8 text-ink-4" />
             </div>
-            <h2 className="text-2xl font-bold text-slate-300 mb-1">全盤皆錯</h2>
-            <p className="text-sm text-slate-500">
+            <h2 className="text-2xl font-bold text-paper-3 mb-1">全盤皆錯</h2>
+            <p className="text-sm text-ink-4">
               你指控了 {accused?.name}，但真正的兇手是 {murderer?.name}
             </p>
           </>
@@ -156,17 +156,17 @@ export default function EndingScreen({ story, playerCharacter, accusedId, apiKey
         )}
         {ending.endingTier === 'killer_escaped' && (
           <>
-            <div className="w-16 h-16 rounded-full bg-emerald-950/30 flex items-center justify-center mx-auto mb-3">
-              <Skull className="w-8 h-8 text-emerald-400" />
+            <div className="w-16 h-16 rounded-full bg-verdigris-deep/30 flex items-center justify-center mx-auto mb-3">
+              <Skull className="w-8 h-8 text-verdigris-2" />
             </div>
-            <h2 className="text-2xl font-bold text-emerald-300 mb-1">逍遙法外</h2>
-            <p className="text-sm text-emerald-400/70">你成功栽贓給了 {accused?.name}</p>
+            <h2 className="text-2xl font-bold text-verdigris-2 mb-1">逍遙法外</h2>
+            <p className="text-sm text-verdigris-2/70">你成功栽贓給了 {accused?.name}</p>
           </>
         )}
       </div>
 
       {error && (
-        <div className="flex items-center gap-2 p-3 rounded-xl bg-amber-950/30 border border-amber-800/30 text-amber-400/80 text-xs mb-5">
+        <div className="flex items-center gap-2 p-3 rounded-xl bg-cinnabar-deep/30 border border-cinnabar/30 text-cinnabar-2/80 text-xs mb-5">
           <AlertCircle className="w-4 h-4 shrink-0" />
           AI 生成超時，已顯示預設結局
         </div>
@@ -174,7 +174,7 @@ export default function EndingScreen({ story, playerCharacter, accusedId, apiKey
 
       {newAchievements.length > 0 && (
         <div className="mb-5 animate-slide-up">
-          <h3 className="font-bold text-sm text-amber-400 mb-3 flex items-center gap-2">
+          <h3 className="font-bold text-sm text-cinnabar-2 mb-3 flex items-center gap-2">
             <Award className="w-4 h-4" />
             獲得成就
           </h3>
@@ -185,12 +185,12 @@ export default function EndingScreen({ story, playerCharacter, accusedId, apiKey
               return (
                 <div
                   key={id}
-                  className="glass-card p-3 border border-amber-700/30 bg-amber-950/20 flex items-center gap-3"
+                  className="night-card p-3 border border-cinnabar/30 bg-cinnabar-deep/20 flex items-center gap-3"
                 >
                   <span className="text-xl">{def.icon}</span>
                   <div>
-                    <p className="text-sm font-bold text-amber-300">{def.title}</p>
-                    <p className="text-xs text-slate-400">{def.description}</p>
+                    <p className="text-sm font-bold text-cinnabar-3">{def.title}</p>
+                    <p className="text-xs text-ink-4">{def.description}</p>
                   </div>
                 </div>
               );
@@ -199,47 +199,47 @@ export default function EndingScreen({ story, playerCharacter, accusedId, apiKey
         </div>
       )}
 
-      <div className="glass-card p-5 mb-5">
-        <h3 className="font-bold text-sm text-amber-400 mb-3">結局</h3>
-        <p className="text-sm text-slate-300 leading-relaxed whitespace-pre-wrap">{ending.ending}</p>
+      <div className="night-card p-5 mb-5">
+        <h3 className="font-bold text-sm text-cinnabar-2 mb-3">結局</h3>
+        <p className="text-sm text-paper-3 leading-relaxed whitespace-pre-wrap">{ending.ending}</p>
         {specialFlags.agendaDone === 'true' && playerCharacter.hiddenAgenda && (
-          <div className="mt-4 pt-4 border-t border-slate-700/50">
+          <div className="mt-4 pt-4 border-t border-ink-3/50">
             <div className="flex items-center gap-2 mb-2">
-              <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-              <span className="text-sm font-bold text-emerald-400">隱藏任務完成</span>
+              <CheckCircle2 className="w-4 h-4 text-verdigris-2" />
+              <span className="text-sm font-bold text-verdigris-2">隱藏任務完成</span>
             </div>
-            <p className="text-sm text-slate-400">{playerCharacter.hiddenAgenda}</p>
+            <p className="text-sm text-ink-4">{playerCharacter.hiddenAgenda}</p>
           </div>
         )}
       </div>
 
-      <div className="glass-card p-5 mb-5">
-        <h3 className="font-bold text-sm text-slate-400 mb-3">案件真相</h3>
+      <div className="night-card p-5 mb-5">
+        <h3 className="font-bold text-sm text-ink-4 mb-3">案件真相</h3>
         <div className="space-y-2.5 text-sm">
           <div className="flex gap-2">
-            <span className="text-slate-500 shrink-0 w-12">兇手</span>
+            <span className="text-ink-4 shrink-0 w-12">兇手</span>
             <span className="text-red-300 font-medium">{murderer?.name}</span>
           </div>
           <div className="flex gap-2">
-            <span className="text-slate-500 shrink-0 w-12">手法</span>
-            <span className="text-slate-300">{story.truth.method}</span>
+            <span className="text-ink-4 shrink-0 w-12">手法</span>
+            <span className="text-paper-3">{story.truth.method}</span>
           </div>
           <div className="flex gap-2">
-            <span className="text-slate-500 shrink-0 w-12">動機</span>
-            <span className="text-slate-300">{story.truth.motive}</span>
+            <span className="text-ink-4 shrink-0 w-12">動機</span>
+            <span className="text-paper-3">{story.truth.motive}</span>
           </div>
           <div className="flex gap-2">
-            <span className="text-slate-500 shrink-0 w-12">時間軸</span>
-            <span className="text-slate-300">{story.truth.timeline}</span>
+            <span className="text-ink-4 shrink-0 w-12">時間軸</span>
+            <span className="text-paper-3">{story.truth.timeline}</span>
           </div>
         </div>
       </div>
 
       <button
         onClick={() => setShowSecrets(!showSecrets)}
-        className="w-full py-3 rounded-xl glass-card text-sm font-medium mb-5 hover:bg-slate-800/80 transition-colors flex items-center justify-center gap-2"
+        className="w-full py-3 rounded-xl night-card text-sm font-medium mb-5 hover:bg-night-3/80 transition-colors flex items-center justify-center gap-2"
       >
-        <BookOpen className="w-4 h-4 text-slate-400" />
+        <BookOpen className="w-4 h-4 text-ink-4" />
         {showSecrets ? '隱藏' : '查看'}每個人的秘密
       </button>
 
@@ -251,20 +251,20 @@ export default function EndingScreen({ story, playerCharacter, accusedId, apiKey
             return (
               <div
                 key={charId}
-                className={`glass-card p-4 border-l-2 ${
-                  isPlayer ? 'border-amber-500/50 bg-amber-950/20' : 'border-slate-700/50'
+                className={`night-card p-4 border-l-2 ${
+                  isPlayer ? 'border-cinnabar-2/50 bg-cinnabar-deep/20' : 'border-ink-3/50'
                 }`}
               >
                 <div className="flex items-center gap-2 mb-1.5">
-                  <PortraitAvatar target={char!} size="sm" />
+                  <PortraitAvatar target={char!} size="sm" era={story.era} />
                   <span className="font-bold text-sm">{char?.name}</span>
                   {isPlayer && (
-                    <span className="text-[10px] px-1.5 py-0.5 bg-amber-900/40 text-amber-400 rounded-full">
+                    <span className="text-[10px] px-1.5 py-0.5 bg-cinnabar-deep/40 text-cinnabar-2 rounded-full">
                       你
                     </span>
                   )}
                 </div>
-                <p className="text-sm text-slate-300">{secret}</p>
+                <p className="text-sm text-paper-3">{secret}</p>
               </div>
             );
           })}
@@ -274,14 +274,14 @@ export default function EndingScreen({ story, playerCharacter, accusedId, apiKey
       <div className="space-y-3">
         <button
           onClick={() => { resetGame(); onRestart(); }}
-          className="w-full py-3.5 rounded-2xl glass-card flex items-center justify-center gap-2 text-sm font-medium hover:bg-slate-800/80 transition-colors"
+          className="w-full py-3.5 rounded-2xl night-card flex items-center justify-center gap-2 text-sm font-medium hover:bg-night-3/80 transition-colors"
         >
           <RotateCcw className="w-4 h-4" />
           再玩一次
         </button>
         <button
           onClick={() => { resetGame(); onMenu(); }}
-          className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-amber-700 to-amber-600 text-white flex items-center justify-center gap-2 text-sm font-medium hover:scale-[1.02] active:scale-[0.98] transition-all"
+          className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-cinnabar to-cinnabar-2 text-white flex items-center justify-center gap-2 text-sm font-medium hover:scale-[1.02] active:scale-[0.98] transition-all"
         >
           <BookOpen className="w-4 h-4" />
           選擇其他案件

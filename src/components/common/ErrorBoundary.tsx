@@ -31,12 +31,12 @@ export default class ErrorBoundary extends Component<Props, State> {
           <div className="min-h-screen flex flex-col items-center justify-center p-6 text-center">
             <div className="text-5xl mb-4">💥</div>
             <h2 className="text-xl font-bold mb-2">出錯了</h2>
-            <p className="text-sm text-slate-400 mb-6">
+            <p className="text-sm text-ink-4 mb-6">
               {this.state.error?.message || '發生未知錯誤'}
             </p>
             <button
               onClick={() => window.location.reload()}
-              className="px-6 py-3 rounded-xl bg-amber-700 text-white text-sm font-medium hover:bg-amber-600 transition-colors"
+              className="px-6 py-3 rounded-xl bg-cinnabar text-white text-sm font-medium hover:bg-cinnabar-2 transition-colors"
             >
               重新整理
             </button>

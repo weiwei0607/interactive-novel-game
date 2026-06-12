@@ -59,7 +59,7 @@ export default function LocationView({
       <div className="px-5 pt-5 pb-3">
         <button
           onClick={onBack}
-          className="flex items-center gap-1 text-slate-400 text-sm mb-3 hover:text-slate-200"
+          className="flex items-center gap-1 text-ink-4 text-sm mb-3 hover:text-paper"
         >
           <ChevronRight className="w-4 h-4 rotate-180" />
           返回地圖
@@ -68,38 +68,38 @@ export default function LocationView({
           <span className="text-3xl">{location.icon}</span>
           <div>
             <h2 className="text-xl font-bold">{location.name}</h2>
-            <p className="text-xs text-slate-500">{story.title}</p>
+            <p className="text-xs text-ink-4">{story.title}</p>
           </div>
         </div>
       </div>
 
       <div className="flex-1 px-5 pb-24 overflow-y-auto scrollbar-hide">
         {descLoading && (
-          <div className="glass-card p-4 mb-4 border-l-2 border-amber-600/30 animate-pulse">
-            <div className="flex items-center gap-2 text-sm text-slate-500">
+          <div className="night-card p-4 mb-4 border-l-2 border-cinnabar-2/30 animate-pulse">
+            <div className="flex items-center gap-2 text-sm text-ink-4">
               <Loader2 className="w-4 h-4 animate-spin" />
               正在描繪場景...
             </div>
           </div>
         )}
         {locationDesc && !descLoading && (
-          <div className="glass-card p-4 mb-4 border-l-2 border-amber-600/50">
-            <p className="text-sm text-slate-300 italic leading-relaxed">{locationDesc}</p>
+          <div className="night-card p-4 mb-4 border-l-2 border-cinnabar-2/50">
+            <p className="text-sm text-paper-3 italic leading-relaxed">{locationDesc}</p>
           </div>
         )}
 
-        <p className="text-sm text-slate-300 mb-5 leading-relaxed">{location.description}</p>
+        <p className="text-sm text-paper-3 mb-5 leading-relaxed">{location.description}</p>
 
         {/* NPC 列表 */}
         {locNpcs.length === 0 && (
-          <div className="flex items-center gap-2 p-3 rounded-xl bg-slate-800/30 border border-slate-800/50 text-slate-500 text-sm mb-5">
+          <div className="flex items-center gap-2 p-3 rounded-xl bg-night-3/30 border border-night-3/50 text-ink-4 text-sm mb-5">
             <User className="w-4 h-4" />
             這裡沒有其他人
           </div>
         )}
         {locNpcs.length > 0 && (
           <div className="mb-5">
-            <h3 className="text-sm font-bold text-slate-400 mb-3 flex items-center gap-1.5">
+            <h3 className="text-sm font-bold text-ink-4 mb-3 flex items-center gap-1.5">
               <MessageCircle className="w-4 h-4" />
               在場的人
             </h3>
@@ -111,35 +111,35 @@ export default function LocationView({
                   <button
                     key={npc.id}
                     onClick={() => onTalk(npc)}
-                    className="w-full flex items-center gap-3 p-3 rounded-xl glass-card hover:bg-slate-800/80 text-left transition-all"
+                    className="w-full flex items-center gap-3 p-3 rounded-xl night-card hover:bg-night-3/80 text-left transition-all"
                   >
-                    <PortraitAvatar target={npc} size="sm" />
+                    <PortraitAvatar target={npc} size="sm" era={story.era} />
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2">
                         <span className="font-bold text-sm">{npc.name}</span>
-                        <span className="text-xs text-slate-500">{npc.role}</span>
+                        <span className="text-xs text-ink-4">{npc.role}</span>
                       </div>
                       {getNpcActivity(npc, elapsedMinutes, isPrologue) && (
-                        <span className="text-[10px] text-slate-500 flex items-center gap-1 mt-0.5">
+                        <span className="text-[10px] text-ink-4 flex items-center gap-1 mt-0.5">
                           <Clock className="w-2.5 h-2.5" />
                           {getNpcActivity(npc, elapsedMinutes, isPrologue)}
                         </span>
                       )}
                       <div className="flex items-center gap-2 mt-1">
-                        <div className="flex-1 h-1.5 bg-slate-800 rounded-full overflow-hidden max-w-[80px]">
+                        <div className="flex-1 h-1.5 bg-night-3 rounded-full overflow-hidden max-w-[80px]">
                           <div
                             className={`h-full rounded-full ${
-                              trust > 70 ? 'bg-emerald-500' : trust > 40 ? 'bg-amber-500' : 'bg-red-500'
+                              trust > 70 ? 'bg-verdigris-2' : trust > 40 ? 'bg-cinnabar-2' : 'bg-red-500'
                             }`}
                             style={{ width: `${trust}%` }}
                           />
                         </div>
-                        <span className="text-[10px] text-slate-500">
+                        <span className="text-[10px] text-ink-4">
                           {hasTalked ? `${trust}% 信任` : '尚未交談'}
                         </span>
                       </div>
                     </div>
-                    <ChevronRight className="w-4 h-4 text-slate-600" />
+                    <ChevronRight className="w-4 h-4 text-ink-3" />
                   </button>
                 );
               })}
@@ -150,7 +150,7 @@ export default function LocationView({
         {/* 線索列表 */}
         {locClues.length > 0 && (
           <div>
-            <h3 className="text-sm font-bold text-slate-400 mb-3 flex items-center gap-1.5">
+            <h3 className="text-sm font-bold text-ink-4 mb-3 flex items-center gap-1.5">
               <Search className="w-4 h-4" />
               可調查的線索
             </h3>
@@ -166,8 +166,8 @@ export default function LocationView({
                     disabled={isAnimating}
                     className={`w-full p-4 rounded-xl border text-left transition-all relative overflow-hidden ${
                       isCollected
-                        ? 'bg-amber-950/30 border-amber-800/40'
-                        : 'glass-card border-slate-700/40 hover:bg-slate-800/80'
+                        ? 'bg-cinnabar-deep/30 border-cinnabar/40'
+                        : 'night-card border-ink-3/40 hover:bg-night-3/80'
                     } ${isAnimating ? 'pointer-events-none' : ''}`}
                     style={isAnimating ? { animation: 'clueCollect 0.55s ease-in forwards' } : undefined}
                   >
@@ -182,7 +182,7 @@ export default function LocationView({
                           return (
                             <span
                               key={i}
-                              className="absolute w-1.5 h-1.5 rounded-full bg-amber-400"
+                              className="absolute w-1.5 h-1.5 rounded-full bg-cinnabar-2"
                               style={{
                                 '--tx': `${tx}px`,
                                 '--ty': `${ty}px`,
@@ -199,7 +199,7 @@ export default function LocationView({
                       </span>
                       <div className="flex-1">
                         <div className="flex items-center gap-2 flex-wrap">
-                          <h4 className={`font-bold text-sm ${isCollected ? 'text-amber-300' : ''}`}>
+                          <h4 className={`font-bold text-sm ${isCollected ? 'text-cinnabar-3' : ''}`}>
                             {clue.name}
                           </h4>
                           {clue.isHidden && isCollected && (
@@ -213,7 +213,7 @@ export default function LocationView({
                               className={`text-[10px] px-1.5 py-0.5 rounded-full font-bold ${
                                 tag === '兇器' || tag === '死者相關'
                                   ? 'bg-red-950/60 text-red-400 border border-red-800/40'
-                                  : 'bg-amber-950/60 text-amber-400 border border-amber-800/40'
+                                  : 'bg-cinnabar-deep/60 text-cinnabar-2 border border-cinnabar/40'
                               }`}
                             >
                               {tag}
@@ -221,10 +221,10 @@ export default function LocationView({
                           ))}
                         </div>
                         {isExamined && (
-                          <p className="text-sm text-slate-300 mt-1 leading-relaxed">{clue.description}</p>
+                          <p className="text-sm text-paper-3 mt-1 leading-relaxed">{clue.description}</p>
                         )}
                         {!isExamined && (
-                          <p className="text-sm text-slate-500 mt-1">點擊調查這個線索...</p>
+                          <p className="text-sm text-ink-4 mt-1">點擊調查這個線索...</p>
                         )}
                         {/* 已調查線索的細節 */}
                         {isExamined && clue.details && clue.details.length > 0 && (
@@ -243,7 +243,7 @@ export default function LocationView({
                                 setExpandedClue(clue.id);
                               }
                             }}
-                            className="mt-2 flex items-center gap-1 text-[10px] text-amber-500/80 hover:text-amber-400 transition-colors"
+                            className="mt-2 flex items-center gap-1 text-[10px] text-cinnabar-2/80 hover:text-cinnabar-2 transition-colors"
                           >
                             {expandedClue === clue.id ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
                             深入調查 ({clue.details.length}) {questionsRemaining <= 0 && expandedClue !== clue.id && '— 需要行動點數'}
@@ -252,9 +252,9 @@ export default function LocationView({
                         {isExamined && expandedClue === clue.id && clue.details && (
                           <div className="mt-2 space-y-2 animate-slide-up">
                             {clue.details.map((detail, idx) => (
-                              <div key={idx} className="bg-slate-900/40 rounded-lg p-2.5">
-                                <h5 className="text-[10px] font-bold text-amber-400 mb-0.5">{detail.label}</h5>
-                                <p className="text-xs text-slate-300 leading-relaxed">{detail.content}</p>
+                              <div key={idx} className="bg-night-2/40 rounded-lg p-2.5">
+                                <h5 className="text-[10px] font-bold text-cinnabar-2 mb-0.5">{detail.label}</h5>
+                                <p className="text-xs text-paper-3 leading-relaxed">{detail.content}</p>
                               </div>
                             ))}
                           </div>
@@ -273,10 +273,10 @@ export default function LocationView({
       {toast && (
         <div className="fixed top-6 left-0 right-0 z-50 flex justify-center pointer-events-none">
           <div
-            className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-amber-950/90 border border-amber-700/50 text-amber-200 text-sm shadow-lg shadow-amber-950/30"
+            className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-cinnabar-deep/90 border border-cinnabar/50 text-cinnabar-3 text-sm shadow-lg shadow-cinnabar-deep/30"
             style={{ animation: 'toastPop 0.35s ease-out' }}
           >
-            <Sparkles className="w-4 h-4 text-amber-400" />
+            <Sparkles className="w-4 h-4 text-cinnabar-2" />
             {toast}
           </div>
         </div>

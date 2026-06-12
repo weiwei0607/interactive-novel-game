@@ -55,6 +55,7 @@ export default function GameplayScreen({ story, playerCharacter, apiKey, onAccus
     visitedLocations, collectedClues, setLocation, collectClue, examineClue,
     getProgress, lastSaveTime, saveToSlot, saveToNamedSlot, questionsRemaining, lastDisruptionEvent,
     elapsedMinutes, loadState, npcTrustLevel, getNpcLocation, currentLocationId,
+    setSpecialFlag,
   } = useGameStore();
 
   const progress = getProgress();
@@ -259,11 +260,11 @@ export default function GameplayScreen({ story, playerCharacter, apiKey, onAccus
           {/* 卡關提示 */}
           {hintVisible && (
             <div className="fixed bottom-24 left-4 right-4 z-30 animate-slide-up">
-              <div className="glass-card p-3 flex items-center gap-2 text-xs text-amber-200/80 border-amber-700/30">
+              <div className="night-card p-3 flex items-center gap-2 text-xs text-cinnabar-3/80 border-cinnabar/30">
                 <span className="shrink-0">{hintText}</span>
                 <button
                   onClick={() => setHintVisible(false)}
-                  className="ml-auto p-1 text-slate-500 hover:text-slate-300 shrink-0"
+                  className="ml-auto p-1 text-ink-4 hover:text-paper-3 shrink-0"
                 >
                   <X className="w-3.5 h-3.5" />
                 </button>
@@ -275,7 +276,7 @@ export default function GameplayScreen({ story, playerCharacter, apiKey, onAccus
             <div
               className={`fixed top-16 left-1/2 -translate-x-1/2 z-40 px-4 py-2 rounded-full text-xs font-medium border ${
                 trustToast.delta > 0
-                  ? 'bg-emerald-900/80 border-emerald-700/50 text-emerald-300'
+                  ? 'bg-verdigris/80 border-verdigris/50 text-verdigris-2'
                   : 'bg-red-900/80 border-red-700/50 text-red-300'
               }`}
               style={{
@@ -284,7 +285,7 @@ export default function GameplayScreen({ story, playerCharacter, apiKey, onAccus
             >
               <span className="inline-block">
                 {trustToast.npc} 的信任度{' '}
-                <span className={`font-bold text-sm ${trustToast.delta > 0 ? 'text-emerald-200' : 'text-red-200'}`}>
+                <span className={`font-bold text-sm ${trustToast.delta > 0 ? 'text-paper-2' : 'text-red-200'}`}>
                   {trustToast.delta > 0 ? '+' : ''}{trustToast.delta}%
                 </span>
               </span>
@@ -293,10 +294,10 @@ export default function GameplayScreen({ story, playerCharacter, apiKey, onAccus
           {/* 指認確認 */}
           {showAccuseConfirm && (
             <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
-              <div className="glass-card w-full max-w-sm p-6 text-center">
-                <AlertTriangle className="w-10 h-10 text-amber-400 mx-auto mb-3" />
-                <h3 className="text-lg font-bold mb-2">準備好指認兇手了嗎？</h3>
-                <p className="text-sm text-slate-400 mb-5">
+              <div className="night-card w-full max-w-sm p-6 text-center">
+                <AlertTriangle className="w-10 h-10 text-cinnabar-2 mx-auto mb-3" />
+                <h3 className="font-kai text-xl mb-2">準備好指認兇手了嗎？</h3>
+                <p className="text-sm text-ink-4 mb-5">
                   一旦做出選擇就無法回頭。建議先收集足夠的線索再下判斷。
                   <br />
                   目前進度：{progress}%
@@ -304,7 +305,7 @@ export default function GameplayScreen({ story, playerCharacter, apiKey, onAccus
                 <div className="flex gap-3">
                   <button
                     onClick={() => setShowAccuseConfirm(false)}
-                    className="flex-1 py-2.5 rounded-xl bg-slate-700/50 text-sm font-medium"
+                    className="flex-1 py-2.5 rounded-xl bg-ink-2/50 text-sm font-medium"
                   >
                     繼續調查
                   </button>
@@ -321,81 +322,81 @@ export default function GameplayScreen({ story, playerCharacter, apiKey, onAccus
           {/* 暫停選單 */}
           {showPauseMenu && (
             <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-fade-in">
-              <div className="glass-card w-full max-w-sm p-6 animate-slide-up">
+              <div className="night-card w-full max-w-sm p-6 animate-slide-up">
                 <div className="flex items-center justify-between mb-6">
-                  <h3 className="text-lg font-bold">遊戲選單</h3>
+                  <h3 className="font-kai text-xl">遊戲選單</h3>
                   <button
                     onClick={() => setShowPauseMenu(false)}
-                    className="p-2 rounded-lg hover:bg-slate-800/60 transition-colors"
+                    className="p-2 rounded-lg hover:bg-night-3/60 transition-colors"
                   >
-                    <X className="w-5 h-5 text-slate-400" />
+                    <X className="w-5 h-5 text-ink-4" />
                   </button>
                 </div>
                 <div className="space-y-3">
                   <button
                     onClick={() => { setShowPauseMenu(false); setSubView('map'); }}
-                    className="w-full flex items-center gap-3 p-4 rounded-xl glass-card hover:bg-slate-800/80 transition-colors text-left"
+                    className="w-full flex items-center gap-3 p-4 rounded-xl night-card hover:bg-night-3/80 transition-colors text-left"
                   >
-                    <RotateCcw className="w-5 h-5 text-amber-400" />
+                    <RotateCcw className="w-5 h-5 text-cinnabar-2" />
                     <div>
                       <p className="font-medium text-sm">回到地圖</p>
-                      <p className="text-xs text-slate-500">繼續調查</p>
+                      <p className="text-xs text-ink-4">繼續調查</p>
                     </div>
                   </button>
                   <button
                     onClick={() => { setShowPauseMenu(false); setShowSaveMenu(true); }}
-                    className="w-full flex items-center gap-3 p-4 rounded-xl glass-card hover:bg-slate-800/80 transition-colors text-left"
+                    className="w-full flex items-center gap-3 p-4 rounded-xl night-card hover:bg-night-3/80 transition-colors text-left"
                   >
-                    <Save className="w-5 h-5 text-emerald-400" />
+                    <Save className="w-5 h-5 text-verdigris-2" />
                     <div>
                       <p className="font-medium text-sm">儲存遊戲</p>
-                      <p className="text-xs text-slate-500">手動記錄當前進度</p>
+                      <p className="text-xs text-ink-4">手動記錄當前進度</p>
                     </div>
                   </button>
                   <button
                     onClick={() => { setShowPauseMenu(false); setShowLoadMenu(true); }}
-                    className="w-full flex items-center gap-3 p-4 rounded-xl glass-card hover:bg-slate-800/80 transition-colors text-left"
+                    className="w-full flex items-center gap-3 p-4 rounded-xl night-card hover:bg-night-3/80 transition-colors text-left"
                   >
-                    <BookOpen className="w-5 h-5 text-amber-400" />
+                    <BookOpen className="w-5 h-5 text-cinnabar-2" />
                     <div>
                       <p className="font-medium text-sm">讀取存檔</p>
-                      <p className="text-xs text-slate-500">載入先前儲存的進度</p>
+                      <p className="text-xs text-ink-4">載入先前儲存的進度</p>
                     </div>
                   </button>
                   <button
                     onClick={() => { setShowPauseMenu(false); onAccuse(); }}
-                    className="w-full flex items-center gap-3 p-4 rounded-xl glass-card hover:bg-slate-800/80 transition-colors text-left"
+                    className="w-full flex items-center gap-3 p-4 rounded-xl night-card hover:bg-night-3/80 transition-colors text-left"
                   >
                     <AlertTriangle className="w-5 h-5 text-red-400" />
                     <div>
                       <p className="font-medium text-sm">指認兇手</p>
-                      <p className="text-xs text-slate-500">目前進度 {progress}%</p>
+                      <p className="text-xs text-ink-4">目前進度 {progress}%</p>
                     </div>
                   </button>
                   <button
                     onClick={() => setTheme(isDark ? 'light' : 'dark')}
-                    className="w-full flex items-center gap-3 p-4 rounded-xl glass-card hover:bg-slate-800/80 transition-colors text-left"
+                    className="w-full flex items-center gap-3 p-4 rounded-xl night-card hover:bg-night-3/80 transition-colors text-left"
                   >
-                    {isDark ? <Sun className="w-5 h-5 text-amber-300" /> : <Moon className="w-5 h-5 text-slate-400" />}
+                    {isDark ? <Sun className="w-5 h-5 text-cinnabar-3" /> : <Moon className="w-5 h-5 text-ink-4" />}
                     <div>
                       <p className="font-medium text-sm">切換主題</p>
-                      <p className="text-xs text-slate-500">{isDark ? '深色模式' : '淺色模式'}</p>
+                      <p className="text-xs text-ink-4">{isDark ? '深色模式' : '淺色模式'}</p>
                     </div>
                   </button>
                   <button
                     onClick={() => setShowPauseMenu(false)}
-                    className="w-full flex items-center gap-3 p-4 rounded-xl glass-card hover:bg-slate-800/80 transition-colors text-left"
+                    className="w-full flex items-center gap-3 p-4 rounded-xl night-card hover:bg-night-3/80 transition-colors text-left"
                   >
-                    <Settings className="w-5 h-5 text-slate-400" />
+                    <Settings className="w-5 h-5 text-ink-4" />
                     <div>
                       <p className="font-medium text-sm">設定 API Key</p>
-                      <p className="text-xs text-slate-500">{apiKey ? '已設定' : '尚未設定'}</p>
+                      <p className="text-xs text-ink-4">{apiKey ? '已設定' : '尚未設定'}</p>
                     </div>
                   </button>
                 </div>
                 <button
                   onClick={() => setShowPauseMenu(false)}
-                  className="w-full mt-6 py-3 rounded-xl bg-slate-700/50 text-sm font-medium hover:bg-slate-700 transition-colors"
+                  className="w-full mt-6 py-3 rounded-xl bg-ink-2/50 text-sm font-medium hover:bg-ink-2 transition-colors"
                 >
                   關閉選單
                 </button>
@@ -451,9 +452,9 @@ export default function GameplayScreen({ story, playerCharacter, apiKey, onAccus
           <div className={`px-4 py-2 rounded-full text-xs font-bold border backdrop-blur-sm flex items-center gap-2 ${
             policeAlert.includes('被迫')
               ? 'bg-red-950/80 border-red-700/50 text-red-300'
-              : 'bg-amber-950/80 border-amber-700/50 text-amber-300'
+              : 'bg-cinnabar-deep/80 border-cinnabar/50 text-cinnabar-3'
           }`}>
-            <span className={`w-2 h-2 rounded-full animate-pulse ${policeAlert.includes('被迫') ? 'bg-red-400' : 'bg-amber-400'}`} />
+            <span className={`w-2 h-2 rounded-full animate-pulse ${policeAlert.includes('被迫') ? 'bg-red-400' : 'bg-cinnabar-2'}`} />
             {policeAlert}
           </div>
         </div>
@@ -476,7 +477,7 @@ export default function GameplayScreen({ story, playerCharacter, apiKey, onAccus
               if (npc) { setSelectedNpc(npc); setSubView('dialog'); }
               setApproachToast(null);
             }}
-            className="px-4 py-2 rounded-full text-xs font-bold border backdrop-blur-sm flex items-center gap-2 bg-emerald-950/80 border-emerald-700/50 text-emerald-300 cursor-pointer hover:bg-emerald-900/80 transition-colors"
+            className="px-4 py-2 rounded-full text-xs font-bold border backdrop-blur-sm flex items-center gap-2 bg-verdigris-deep/80 border-verdigris/50 text-verdigris-2 cursor-pointer hover:bg-verdigris/80 transition-colors"
           >
             <MessageCircle className="w-3 h-3 animate-pulse" />
             {approachToast.message}
@@ -486,18 +487,18 @@ export default function GameplayScreen({ story, playerCharacter, apiKey, onAccus
       {/* NPC 迴避提示 */}
       {avoidNote && (
         <div className="fixed top-14 left-1/2 -translate-x-1/2 z-50 animate-slide-up">
-          <div className="px-4 py-2 rounded-full text-xs font-bold border backdrop-blur-sm flex items-center gap-2 bg-slate-800/80 border-slate-700/50 text-slate-400">
+          <div className="px-4 py-2 rounded-full text-xs font-bold border backdrop-blur-sm flex items-center gap-2 bg-night-3/80 border-ink-3/50 text-ink-4">
             <User className="w-3 h-3" />
             {avoidNote}
           </div>
         </div>
       )}
-      {/* 關鍵抉擇 Modal -->
+      {/* 關鍵抉擇 Modal */}
       {activeKeyChoice && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-fade-in">
-          <div className="glass-card w-full max-w-sm p-6">
-            <h3 className="text-lg font-bold mb-4 text-amber-300">關鍵抉擇</h3>
-            <p className="text-sm text-slate-300 mb-5 leading-relaxed">{activeKeyChoice.question}</p>
+          <div className="night-card w-full max-w-sm p-6">
+            <h3 className="font-kai text-xl mb-4 text-cinnabar-3">關鍵抉擇</h3>
+            <p className="text-sm text-paper-3 mb-5 leading-relaxed">{activeKeyChoice.question}</p>
             <div className="space-y-2.5">
               {activeKeyChoice.options.map((opt) => (
                 <button
@@ -506,7 +507,7 @@ export default function GameplayScreen({ story, playerCharacter, apiKey, onAccus
                     setSpecialFlag(activeKeyChoice.id, opt.value);
                     setActiveKeyChoice(null);
                   }}
-                  className="w-full text-left p-3.5 rounded-xl bg-slate-800/60 border border-slate-700/40 hover:bg-amber-950/30 hover:border-amber-700/30 transition-colors text-sm text-slate-200"
+                  className="w-full text-left p-3.5 rounded-xl bg-night-3/60 border border-ink-3/40 hover:bg-cinnabar-deep/30 hover:border-cinnabar/30 transition-colors text-sm text-paper"
                 >
                   {opt.label}
                 </button>

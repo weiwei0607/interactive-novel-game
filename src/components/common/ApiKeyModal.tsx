@@ -45,17 +45,17 @@ export default function ApiKeyModal({ isOpen, onClose, onSave, currentKey }: Pro
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-fade-in">
-      <div className="glass-card w-full max-w-sm p-6 animate-slide-up">
+      <div className="night-card w-full max-w-sm p-6 animate-slide-up">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-lg font-bold flex items-center gap-2">
-            <Key className="w-5 h-5 text-amber-400" />
+            <Key className="w-5 h-5 text-cinnabar-2" />
             Gemini API Key
           </h3>
-          <button onClick={onClose} className="p-1 rounded-full hover:bg-slate-700/50 transition-colors">
-            <X className="w-5 h-5 text-slate-400" />
+          <button onClick={onClose} className="p-1 rounded-full hover:bg-ink-2/50 transition-colors">
+            <X className="w-5 h-5 text-ink-4" />
           </button>
         </div>
-        <p className="text-sm text-slate-400 mb-4">
+        <p className="text-sm text-ink-4 mb-4">
           AI NPC 對話需要 Gemini API Key。金鑰只會存在你的裝置上，不會上傳到任何伺服器。
         </p>
         <div className="relative mb-2">
@@ -65,11 +65,11 @@ export default function ApiKeyModal({ isOpen, onClose, onSave, currentKey }: Pro
             onChange={(e) => { setKey(e.target.value); setError(''); }}
             onKeyDown={(e) => e.key === 'Enter' && handleSave()}
             placeholder="AIzaSy..."
-            className="w-full px-4 py-3 pr-12 bg-slate-900/80 border border-slate-700 rounded-xl text-sm focus:outline-none focus:border-amber-500/50 transition-colors"
+            className="w-full px-4 py-3 pr-12 bg-night-2/80 border border-ink-3 rounded-xl text-sm focus:outline-none focus:border-cinnabar-2/50 transition-colors"
           />
           <button
             onClick={() => setShowKey(!showKey)}
-            className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-slate-500 hover:text-slate-300 transition-colors"
+            className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-ink-4 hover:text-paper-3 transition-colors"
           >
             {showKey ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
           </button>
@@ -80,13 +80,13 @@ export default function ApiKeyModal({ isOpen, onClose, onSave, currentKey }: Pro
         <div className="flex gap-3">
           <button
             onClick={onClose}
-            className="flex-1 py-2.5 rounded-xl bg-slate-700/50 text-sm font-medium hover:bg-slate-700 transition-colors"
+            className="flex-1 py-2.5 rounded-xl bg-ink-2/50 text-sm font-medium hover:bg-ink-2 transition-colors"
           >
             取消
           </button>
           <button
             onClick={handleSave}
-            className="flex-1 py-2.5 rounded-xl bg-amber-600 text-sm font-medium hover:bg-amber-500 transition-colors"
+            className="flex-1 py-2.5 rounded-xl bg-cinnabar-2 text-sm font-medium hover:bg-cinnabar-2 transition-colors"
           >
             儲存
           </button>

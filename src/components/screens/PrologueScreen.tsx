@@ -84,16 +84,16 @@ export default function PrologueScreen({ story, playerCharacter, apiKey, onEndPr
       <div className="min-h-screen px-5 py-6 animate-fade-in">
         <button
           onClick={handleBack}
-          className="flex items-center gap-1 text-slate-400 text-sm mb-4 hover:text-slate-200 transition-colors"
+          className="flex items-center gap-1 text-ink-4 text-sm mb-4 hover:text-paper transition-colors"
         >
           <ChevronRight className="w-4 h-4 rotate-180" />
           返回
         </button>
         <h2 className="text-xl font-bold mb-2">{selectedLocation.name}</h2>
-        <p className="text-sm text-slate-400 mb-6 leading-relaxed">{selectedLocation.description}</p>
+        <p className="text-sm text-ink-4 mb-6 leading-relaxed">{selectedLocation.description}</p>
         {selectedLocation.npcs.length > 0 && (
           <div className="mb-4">
-            <h3 className="text-xs text-slate-500 uppercase tracking-wider mb-2">在場的人</h3>
+            <h3 className="text-xs text-ink-4 uppercase tracking-wider mb-2">在場的人</h3>
             <div className="space-y-2">
               {selectedLocation.npcs.map((npcId) => {
                 const npc = prologueNpcs.find((n) => n.id === npcId);
@@ -103,12 +103,12 @@ export default function PrologueScreen({ story, playerCharacter, apiKey, onEndPr
                     key={npc.id}
                     onClick={() => handleTalk(npc)}
                     disabled={prologueActionsRemaining <= 0}
-                    className="w-full flex items-center gap-3 p-3 rounded-xl glass-card hover:bg-slate-800/80 transition-colors text-left disabled:opacity-50"
+                    className="w-full flex items-center gap-3 p-3 rounded-xl night-card hover:bg-night-3/80 transition-colors text-left disabled:opacity-50"
                   >
-                    <PortraitAvatar target={npc} size="sm" />
+                    <PortraitAvatar target={npc} size="sm" era={story.era} />
                     <div>
                       <span className="text-sm font-medium">{npc.name}</span>
-                      <span className="text-xs text-slate-500 ml-2">{npc.role}</span>
+                      <span className="text-xs text-ink-4 ml-2">{npc.role}</span>
                     </div>
                   </button>
                 );
@@ -116,7 +116,7 @@ export default function PrologueScreen({ story, playerCharacter, apiKey, onEndPr
             </div>
           </div>
         )}
-        <p className="text-xs text-slate-600 mt-4">序幕階段不會找到與謀殺相關的線索。你只是在感受這個場合的氛圍。</p>
+        <p className="text-xs text-ink-3 mt-4">序幕階段不會找到與謀殺相關的線索。你只是在感受這個場合的氛圍。</p>
       </div>
     );
   }
@@ -125,66 +125,66 @@ export default function PrologueScreen({ story, playerCharacter, apiKey, onEndPr
     <div className="min-h-screen px-5 py-6 animate-fade-in flex flex-col">
       <div className="mb-5">
         <div className="flex items-center justify-between mb-2">
-          <span className="text-xs font-medium text-emerald-500/80 bg-emerald-950/40 px-2 py-0.5 rounded-full">
+          <span className="text-xs font-medium text-verdigris-2/80 bg-verdigris-deep/40 px-2 py-0.5 rounded-full">
             序幕
           </span>
-          <span className="text-xs text-slate-500">
+          <span className="text-xs text-ink-4">
             剩餘行動：{prologueActionsRemaining}
           </span>
         </div>
         {/* 時間顯示 */}
-        <div className="flex items-center gap-1.5 mb-2 text-[11px] text-slate-400">
+        <div className="flex items-center gap-1.5 mb-2 text-[11px] text-ink-4">
           <Clock className="w-3 h-3" />
-          <span className="font-medium text-slate-300">{gameTime.periodLabel} {gameTime.label}</span>
-          <Moon className="w-3 h-3 text-slate-400" />
-          <span className="text-slate-500 italic">聚會進行中</span>
+          <span className="font-medium text-paper-3">{gameTime.periodLabel} {gameTime.label}</span>
+          <Moon className="w-3 h-3 text-ink-4" />
+          <span className="text-ink-4 italic">聚會進行中</span>
         </div>
         <h2 className="text-xl font-bold">{story.title}</h2>
       </div>
 
       <div className="flex-1 overflow-y-auto scrollbar-hide pb-4">
-        <div className="glass-card p-5 mb-5">
-          <p className="text-sm text-slate-300 leading-relaxed whitespace-pre-wrap">
+        <div className="night-card p-5 mb-5">
+          <p className="text-sm text-paper-3 leading-relaxed whitespace-pre-wrap">
             {story.prologueSynopsis || story.synopsis}
           </p>
         </div>
 
         <div className="mb-5">
-          <h3 className="text-xs text-slate-500 uppercase tracking-wider mb-2">在場的人</h3>
+          <h3 className="text-xs text-ink-4 uppercase tracking-wider mb-2">在場的人</h3>
           <div className="space-y-2">
             {prologueNpcs.map((npc) => (
               <button
                 key={npc.id}
                 onClick={() => handleTalk(npc)}
                 disabled={prologueActionsRemaining <= 0}
-                className="w-full flex items-center gap-3 p-3 rounded-xl glass-card hover:bg-slate-800/80 transition-colors text-left disabled:opacity-50"
+                className="w-full flex items-center gap-3 p-3 rounded-xl night-card hover:bg-night-3/80 transition-colors text-left disabled:opacity-50"
               >
-                <PortraitAvatar target={npc} size="sm" />
+                <PortraitAvatar target={npc} size="sm" era={story.era} />
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2">
                     <span className="text-sm font-medium">{npc.name}</span>
-                    <span className="text-xs text-slate-500">{npc.role}</span>
+                    <span className="text-xs text-ink-4">{npc.role}</span>
                   </div>
                 </div>
-                <MessageCircle className="w-4 h-4 text-slate-600 shrink-0" />
+                <MessageCircle className="w-4 h-4 text-ink-3 shrink-0" />
               </button>
             ))}
           </div>
         </div>
 
         <div className="mb-5">
-          <h3 className="text-xs text-slate-500 uppercase tracking-wider mb-2">地點</h3>
+          <h3 className="text-xs text-ink-4 uppercase tracking-wider mb-2">地點</h3>
           <div className="space-y-2">
             {story.locations.map((loc) => (
               <button
                 key={loc.id}
                 onClick={() => handleEnterLocation(loc)}
                 disabled={prologueActionsRemaining <= 0}
-                className="w-full flex items-center gap-3 p-3 rounded-xl glass-card hover:bg-slate-800/80 transition-colors text-left disabled:opacity-50"
+                className="w-full flex items-center gap-3 p-3 rounded-xl night-card hover:bg-night-3/80 transition-colors text-left disabled:opacity-50"
               >
                 <span className="text-lg">{loc.icon}</span>
                 <span className="text-sm font-medium">{loc.name}</span>
-                <MapPin className="w-4 h-4 text-slate-600 ml-auto shrink-0" />
+                <MapPin className="w-4 h-4 text-ink-3 ml-auto shrink-0" />
               </button>
             ))}
           </div>
@@ -199,7 +199,7 @@ export default function PrologueScreen({ story, playerCharacter, apiKey, onEndPr
           <Moon className="w-5 h-5" />
           結束今晚，回房休息
         </button>
-        <p className="text-xs text-slate-600 text-center mt-2">
+        <p className="text-xs text-ink-3 text-center mt-2">
           點擊後將進入睡眠/離開，醒來後可能會發現事情變了
         </p>
       </div>

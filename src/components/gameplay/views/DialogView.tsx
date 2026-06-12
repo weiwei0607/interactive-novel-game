@@ -40,8 +40,8 @@ export default function DialogView({
 
   const gameTime = computeGameTime(elapsedMinutes, isPrologue);
   const timeIcon = gameTime.period === 'night' || gameTime.period === 'pre-dawn'
-    ? <Moon className="w-3 h-3 text-slate-400" />
-    : <Sun className="w-3 h-3 text-amber-400" />;
+    ? <Moon className="w-3 h-3 text-ink-4" />
+    : <Sun className="w-3 h-3 text-cinnabar-2" />;
 
   const actionRemaining = isPrologue ? prologueActionsRemaining : questionsRemaining;
 
@@ -100,11 +100,11 @@ export default function DialogView({
   })();
 
   const moodColor = npcMood === 'angry' ? 'from-red-600/30 to-red-950/30 border-red-500/40'
-    : npcMood === 'dodge' ? 'from-slate-600/20 to-slate-900/30 border-slate-500/30'
+    : npcMood === 'dodge' ? 'from-ink-3/20 to-night-2/30 border-ink-4/30'
     : npcMood === 'panic' ? 'from-red-500/20 to-red-900/20 border-red-500/30'
     : npcMood === 'lie' ? 'from-purple-500/20 to-purple-900/20 border-purple-500/30'
-    : npcMood === 'float' ? 'from-emerald-500/20 to-emerald-900/20 border-emerald-500/30'
-    : 'from-amber-500/10 to-slate-900/20 border-amber-500/20';
+    : npcMood === 'float' ? 'from-verdigris-2/20 to-verdigris/20 border-verdigris-2/30'
+    : 'from-cinnabar-2/10 to-night-2/20 border-cinnabar-2/20';
 
   const handleSend = useCallback(async (textOverride?: string) => {
     const text = (textOverride ?? input).trim();
@@ -179,10 +179,10 @@ export default function DialogView({
     story.npcs.find((n) => n.id === selectedNpc.id)?.defaultLocation === l.id
   );
   const bgGradient = currentLoc?.id.includes('night') || currentLoc?.id.includes('dark')
-    ? 'from-slate-950 via-slate-900 to-indigo-950'
+    ? 'from-night via-night-2 to-indigo-950'
     : currentLoc?.id.includes('fire') || currentLoc?.id.includes('blood')
-    ? 'from-slate-950 via-red-950/30 to-slate-900'
-    : 'from-slate-950 via-slate-900 to-amber-950/20';
+    ? 'from-night via-red-950/30 to-night-2'
+    : 'from-night via-night-2 to-cinnabar-deep/20';
 
   return (
     <div className="min-h-screen flex flex-col relative overflow-hidden">
@@ -194,7 +194,7 @@ export default function DialogView({
         {Array.from({ length: 6 }).map((_, i) => (
           <span
             key={i}
-            className="absolute w-1 h-1 rounded-full bg-amber-200/20"
+            className="absolute w-1 h-1 rounded-full bg-cinnabar-3/20"
             style={{
               left: `${15 + i * 15}%`,
               top: `${20 + (i % 3) * 25}%`,
@@ -208,14 +208,14 @@ export default function DialogView({
       <div className="relative z-10 flex items-center justify-between px-5 pt-5 pb-2">
         <button
           onClick={onBack}
-          className="p-2 rounded-full bg-slate-900/40 backdrop-blur-sm border border-slate-700/30 hover:bg-slate-800/60 transition-colors"
+          className="p-2 rounded-full bg-night-2/40 backdrop-blur-sm border border-ink-3/30 hover:bg-night-3/60 transition-colors"
         >
-          <ChevronRight className="w-5 h-5 rotate-180 text-slate-300" />
+          <ChevronRight className="w-5 h-5 rotate-180 text-paper-3" />
         </button>
         <div className="flex items-center gap-2">
-          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900/40 backdrop-blur-sm border border-slate-700/30">
-            <div className={`w-2 h-2 rounded-full ${trust > 70 ? 'bg-emerald-400' : trust > 40 ? 'bg-amber-400' : 'bg-red-400'} ${isNpcSpeaking ? 'animate-pulse' : ''}`} />
-            <span className="text-xs text-slate-400">信任度 {trust}%</span>
+          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-night-2/40 backdrop-blur-sm border border-ink-3/30">
+            <div className={`w-2 h-2 rounded-full ${trust > 70 ? 'bg-verdigris-2' : trust > 40 ? 'bg-cinnabar-2' : 'bg-red-400'} ${isNpcSpeaking ? 'animate-pulse' : ''}`} />
+            <span className="text-xs text-ink-4">信任度 {trust}%</span>
           </div>
           {!isPrologue && story.specialMechanic?.type === 'killer_may_strike' && selectedNpc.id === story.truth.murdererId && (
             <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-red-950/40 backdrop-blur-sm border border-red-800/30">
@@ -226,23 +226,23 @@ export default function DialogView({
             </div>
           )}
           {isPrologue && (
-            <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-950/30 backdrop-blur-sm border border-emerald-800/30">
-              <span className="text-xs text-emerald-400">序幕</span>
+            <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-verdigris-deep/30 backdrop-blur-sm border border-verdigris/30">
+              <span className="text-xs text-verdigris-2">序幕</span>
             </div>
           )}
         </div>
         <button
           onClick={onGoMap}
-          className="p-2 rounded-full bg-slate-900/40 backdrop-blur-sm border border-slate-700/30 hover:bg-slate-800/60 transition-colors"
+          className="p-2 rounded-full bg-night-2/40 backdrop-blur-sm border border-ink-3/30 hover:bg-night-3/60 transition-colors"
         >
-          <MapPin className="w-5 h-5 text-slate-300" />
+          <MapPin className="w-5 h-5 text-paper-3" />
         </button>
       </div>
 
       {/* 時間顯示 */}
-      <div className="relative z-10 flex items-center justify-center gap-1.5 mb-1 text-[11px] text-slate-400">
+      <div className="relative z-10 flex items-center justify-center gap-1.5 mb-1 text-[11px] text-ink-4">
         <Clock className="w-3 h-3" />
-        <span className="font-medium text-slate-300">{gameTime.periodLabel} {gameTime.label}</span>
+        <span className="font-medium text-paper-3">{gameTime.periodLabel} {gameTime.label}</span>
         {timeIcon}
       </div>
 
@@ -250,10 +250,10 @@ export default function DialogView({
       <div className="relative z-10 flex-1 flex flex-col items-center justify-end pb-4 px-5">
         {/* 角色名標籤 */}
         <div className="mb-3 flex items-center gap-2">
-          <span className={`px-3 py-1 rounded-full text-xs font-medium bg-gradient-to-r ${moodColor} border backdrop-blur-sm text-slate-200`}>
+          <span className={`px-3 py-1 rounded-full text-xs font-medium bg-gradient-to-r ${moodColor} border backdrop-blur-sm text-paper`}>
             {selectedNpc.name}
           </span>
-          <span className="text-xs text-slate-500">{selectedNpc.role}</span>
+          <span className="text-xs text-ink-4">{selectedNpc.role}</span>
         </div>
 
         {/* 大頭像區域 */}
@@ -269,7 +269,7 @@ export default function DialogView({
           {/* 脈衝環 */}
           {isNpcSpeaking && (
             <span
-              className="absolute inset-0 rounded-full border border-amber-500/30"
+              className="absolute inset-0 rounded-full border border-cinnabar-2/30"
               style={{ animation: 'pulseRing 1.5s ease-out infinite' }}
             />
           )}
@@ -278,14 +278,15 @@ export default function DialogView({
           <div className="relative">
             <PortraitAvatar
               target={selectedNpc}
+              era={story.era}
               mood={npcMood}
               isSpeaking={isNpcSpeaking}
               size="lg"
             />
             {/* 情緒指示 */}
             {npcMood && (
-              <span className={`absolute -bottom-1 -right-1 w-5 h-5 rounded-full border-2 border-slate-900 flex items-center justify-center text-[10px] ${
-                npcMood === 'angry' ? 'bg-red-500' : npcMood === 'dodge' ? 'bg-slate-500' : npcMood === 'panic' ? 'bg-red-400' : npcMood === 'lie' ? 'bg-purple-500' : 'bg-emerald-500'
+              <span className={`absolute -bottom-1 -right-1 w-5 h-5 rounded-full border-2 border-night-2 flex items-center justify-center text-[10px] ${
+                npcMood === 'angry' ? 'bg-red-500' : npcMood === 'dodge' ? 'bg-ink-3' : npcMood === 'panic' ? 'bg-red-400' : npcMood === 'lie' ? 'bg-purple-500' : 'bg-verdigris-2'
               }`}>
                 {npcMood === 'angry' ? '💢' : npcMood === 'dodge' ? '💨' : npcMood === 'panic' ? '❗' : npcMood === 'lie' ? '👀' : '✨'}
               </span>
@@ -296,19 +297,19 @@ export default function DialogView({
         {/* 說話中的指示器 */}
         {isNpcSpeaking && (
           <div className="mt-3 flex gap-1">
-            <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-bounce" />
-            <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-bounce" style={{ animationDelay: '0.15s' }} />
-            <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-bounce" style={{ animationDelay: '0.3s' }} />
+            <span className="w-1.5 h-1.5 rounded-full bg-cinnabar-2 animate-bounce" />
+            <span className="w-1.5 h-1.5 rounded-full bg-cinnabar-2 animate-bounce" style={{ animationDelay: '0.15s' }} />
+            <span className="w-1.5 h-1.5 rounded-full bg-cinnabar-2 animate-bounce" style={{ animationDelay: '0.3s' }} />
           </div>
         )}
       </div>
 
       {/* 對話框區域 — 下半部 */}
-      <div className="relative z-10 bg-gradient-to-t from-slate-950 via-slate-950/95 to-transparent pt-6 pb-4">
+      <div className="relative z-10 bg-gradient-to-t from-night via-night/95 to-transparent pt-6 pb-4">
         {/* 對話內容 */}
         <div className="px-5 h-40 overflow-y-auto scrollbar-hide mb-3">
           {history.length === 0 ? (
-            <div className="text-center py-8 text-slate-500">
+            <div className="text-center py-8 text-ink-4">
               <MessageCircle className="w-8 h-8 mx-auto mb-2 opacity-40" />
               <p className="text-xs">開始與 {selectedNpc.name} 對話</p>
             </div>
@@ -329,15 +330,15 @@ export default function DialogView({
                     <div
                       className={`max-w-[85%] px-4 py-2.5 rounded-2xl text-sm leading-relaxed backdrop-blur-sm ${
                         isUser
-                          ? 'bg-amber-700/30 text-amber-100 rounded-br-md border border-amber-600/20'
-                          : 'bg-slate-800/60 text-slate-200 rounded-bl-md border border-slate-700/30'
+                          ? 'bg-cinnabar/30 text-paper-2 rounded-br-md border border-cinnabar-2/20'
+                          : 'bg-night-3/60 text-paper rounded-bl-md border border-ink-3/30'
                       }`}
                       style={isNew ? { animation: 'bubblePop 0.3s ease-out' } : undefined}
                     >
                       {isLastNpc ? (
                         <span>
                           {typedText}
-                          <span className="inline-block w-0.5 h-4 bg-amber-400 ml-0.5 animate-pulse" />
+                          <span className="inline-block w-0.5 h-4 bg-cinnabar-2 ml-0.5 animate-pulse" />
                         </span>
                       ) : (
                         msg.content
@@ -362,7 +363,7 @@ export default function DialogView({
         {/* NPC 反問時的快速回答 */}
         {quickReplies && (
           <div className="px-5 mb-3">
-            <p className="text-[10px] text-amber-500/70 mb-1.5">{selectedNpc.name} 在等你的回答...</p>
+            <p className="text-[10px] text-cinnabar-2/70 mb-1.5">{selectedNpc.name} 在等你的回答...</p>
             <div className="flex gap-2 overflow-x-auto scrollbar-hide">
               {quickReplies.map((r) => (
                 <button
@@ -386,7 +387,7 @@ export default function DialogView({
                 key={q}
                 onClick={() => handleSend(q)}
                 disabled={loading}
-                className="shrink-0 px-3 py-1.5 rounded-full bg-slate-800/40 border border-slate-700/30 text-xs text-slate-400 hover:text-slate-200 hover:border-slate-600 transition-colors disabled:opacity-40"
+                className="shrink-0 px-3 py-1.5 rounded-full bg-night-3/40 border border-ink-3/30 text-xs text-ink-4 hover:text-paper hover:border-ink-3 transition-colors disabled:opacity-40"
               >
                 {q}
               </button>
@@ -404,12 +405,12 @@ export default function DialogView({
               onKeyDown={(e) => e.key === 'Enter' && !e.shiftKey && !loading && handleSend()}
               placeholder={`對 ${selectedNpc.name} 說話...`}
               disabled={loading}
-              className="flex-1 px-4 py-3 bg-slate-900/60 border border-slate-700/50 rounded-xl text-sm focus:outline-none focus:border-amber-500/50 disabled:opacity-50 backdrop-blur-sm"
+              className="flex-1 px-4 py-3 bg-night-2/60 border border-ink-3/50 rounded-xl text-sm focus:outline-none focus:border-cinnabar-2/50 disabled:opacity-50 backdrop-blur-sm"
             />
             <button
               onClick={() => handleSend()}
               disabled={loading || !input.trim()}
-              className="p-3 rounded-xl bg-gradient-to-r from-amber-700 to-amber-600 text-white disabled:opacity-40 disabled:cursor-not-allowed hover:from-amber-600 hover:to-amber-500 transition-all shadow-lg shadow-amber-900/20"
+              className="p-3 rounded-xl bg-gradient-to-r from-cinnabar to-cinnabar-2 text-white disabled:opacity-40 disabled:cursor-not-allowed hover:from-cinnabar-2 hover:to-cinnabar-2 transition-all shadow-lg shadow-cinnabar/20"
             >
               <Send className="w-4 h-4" />
             </button>

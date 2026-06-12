@@ -142,8 +142,8 @@ export default function App() {
   // 載入中遮罩
   if (loadingStory) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-slate-950 text-slate-300">
-        <Loader2 className="w-8 h-8 animate-spin text-amber-500 mb-4" />
+      <div className="min-h-screen flex flex-col items-center justify-center bg-night text-paper-3">
+        <Loader2 className="w-8 h-8 animate-spin text-cinnabar-2 mb-4" />
         <p className="text-sm">載入案件中...</p>
       </div>
     );
@@ -180,10 +180,10 @@ export default function App() {
           {!apiKey && (
             <button
               onClick={() => setShowApiKeyModal(true)}
-              className="fixed bottom-4 left-4 z-40 p-3 rounded-full glass-card hover:bg-slate-800/80 transition-colors"
+              className="fixed bottom-4 left-4 z-40 p-3 rounded-full night-card hover:bg-night-3/80 transition-colors"
               title="設定 API Key"
             >
-              <Key className="w-4 h-4 text-amber-400" />
+              <Key className="w-4 h-4 text-cinnabar-2" />
             </button>
           )}
         </>

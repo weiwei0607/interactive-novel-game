@@ -1,0 +1,47 @@
+<svg width="100%" viewBox="0 0 680 920" preserveAspectRatio="xMidYMid slice" role="img" xmlns="http://www.w3.org/2000/svg"><title>霧中真相 水墨封面</title><desc>夜色水墨畫：霧中遠山、孤舟燈火、月與寒鴉，右側直書標題霧中真相與紅色印章</desc>
+<rect x="0" y="0" width="680" height="920" fill="#0c1118"/>
+<circle cx="175" cy="165" r="58" fill="#d9dfe5" opacity="0.82"/>
+<circle cx="175" cy="165" r="58" fill="#0c1118" opacity="0.18"/>
+<ellipse cx="190" cy="185" rx="95" ry="26" fill="#0c1118" opacity="0.5"/>
+<path d="M226,212 q6,-7 12,0 q6,-7 12,0" fill="none" stroke="#1d2833" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M268,190 q5,-6 10,0 q5,-6 10,0" fill="none" stroke="#1d2833" stroke-width="2" stroke-linecap="round"/>
+<path d="M300,226 q5,-6 10,0 q5,-6 10,0" fill="none" stroke="#1d2833" stroke-width="2" stroke-linecap="round"/>
+<path d="M0,500 C60,470 100,360 150,338 C200,360 230,440 280,462 C330,420 350,388 380,384 C420,392 460,448 520,468 C580,482 630,470 680,452 L680,640 L0,640 Z" fill="#2e3e4e" opacity="0.42"/>
+<path d="M0,575 C40,545 70,440 105,424 C145,448 165,520 210,545 C250,510 280,478 310,474 C355,490 390,548 450,572 C520,596 600,588 680,602 L680,660 L0,660 Z" fill="#1c2935" opacity="0.88"/>
+<ellipse cx="320" cy="560" rx="400" ry="42" fill="#0c1118" opacity="0.55"/>
+<ellipse cx="380" cy="528" rx="330" ry="26" fill="#8fa3b3" opacity="0.07"/>
+<ellipse cx="180" cy="600" rx="260" ry="30" fill="#0c1118" opacity="0.45"/>
+<rect x="0" y="640" width="680" height="280" fill="#0a0f15"/>
+<path d="M0,640 L680,640" stroke="#31414f" stroke-width="0.8" opacity="0.6"/>
+<line x1="120" y1="668" x2="225" y2="668" stroke="#cdd6dd" stroke-width="1.6" opacity="0.16"/>
+<line x1="140" y1="690" x2="210" y2="690" stroke="#cdd6dd" stroke-width="1.2" opacity="0.12"/>
+<line x1="155" y1="712" x2="200" y2="712" stroke="#cdd6dd" stroke-width="1" opacity="0.09"/>
+<line x1="60" y1="700" x2="130" y2="700" stroke="#31414f" stroke-width="1" opacity="0.5"/>
+<line x1="430" y1="676" x2="540" y2="676" stroke="#31414f" stroke-width="1" opacity="0.5"/>
+<line x1="470" y1="700" x2="560" y2="700" stroke="#31414f" stroke-width="0.8" opacity="0.4"/>
+<circle cx="382" cy="668" r="30" fill="#e8a23d" opacity="0.13"/>
+<circle cx="382" cy="668" r="12" fill="#e8a23d" opacity="0.28"/>
+<circle cx="382" cy="668" r="3.5" fill="#f6c66c"/>
+<line x1="382" y1="672" x2="376" y2="702" stroke="#05080b" stroke-width="2"/>
+<circle cx="370" cy="682" r="4.5" fill="#05080b"/>
+<path d="M364,686 q6,10 10,16 l-12,0 Z" fill="#05080b"/>
+<path d="M318,702 Q362,720 408,702 L398,694 L330,694 Z" fill="#05080b"/>
+<line x1="346" y1="728" x2="396" y2="728" stroke="#e8a23d" stroke-width="1.4" opacity="0.18"/>
+<path d="M0,920 L0,728 C40,742 86,762 118,812 C140,852 120,890 96,920 Z" fill="#0a1017"/>
+<path d="M30,748 Q58,722 88,748 L78,748 Q58,732 40,748 Z" fill="#04070a"/>
+<line x1="44" y1="748" x2="44" y2="768" stroke="#04070a" stroke-width="2.4"/>
+<line x1="72" y1="748" x2="72" y2="768" stroke="#04070a" stroke-width="2.4"/>
+<line x1="34" y1="769" x2="82" y2="769" stroke="#04070a" stroke-width="3"/>
+<circle cx="248" cy="470" r="2" fill="#3a4c5c" opacity="0.6"/>
+<circle cx="262" cy="486" r="1.3" fill="#3a4c5c" opacity="0.5"/>
+<circle cx="120" cy="320" r="1.6" fill="#3a4c5c" opacity="0.5"/>
+<g font-family="'Noto Serif TC','Songti TC','PMingLiU',serif">
+<text x="602" y="208" text-anchor="middle" font-size="62" fill="#d6dee4">霧</text>
+<text x="602" y="288" text-anchor="middle" font-size="62" fill="#d6dee4">中</text>
+<text x="602" y="368" text-anchor="middle" font-size="62" fill="#d6dee4">真</text>
+<text x="602" y="448" text-anchor="middle" font-size="62" fill="#d6dee4">相</text>
+<rect x="580" y="478" width="44" height="44" rx="5" fill="#b3322b"/>
+<text x="602" y="510" text-anchor="middle" font-size="26" fill="#f3ead9">探</text>
+</g>
+<text x="340" y="876" text-anchor="middle" font-size="13" fill="#5b6b78" letter-spacing="6" font-family="system-ui,sans-serif">INTERACTIVE MYSTERY</text>
+</svg>

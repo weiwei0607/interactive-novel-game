@@ -63,21 +63,21 @@ export default function SaveGameMenu({ isOpen, onClose, onSave }: Props) {
       <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={onClose} />
       <div className="relative z-10 w-full max-w-md glass rounded-2xl p-6 max-h-[80vh] flex flex-col animate-slide-up">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-xl font-bold text-slate-100">儲存遊戲</h2>
-          <button onClick={onClose} className="p-2 rounded-lg hover:bg-slate-800/60 transition-colors">
-            <X className="w-5 h-5 text-slate-400" />
+          <h2 className="text-xl font-bold text-paper-2">儲存遊戲</h2>
+          <button onClick={onClose} className="p-2 rounded-lg hover:bg-night-3/60 transition-colors">
+            <X className="w-5 h-5 text-ink-4" />
           </button>
         </div>
 
         {/* 輸入存檔名稱 */}
         <div className="mb-4">
-          <label className="text-xs text-slate-500 mb-1.5 block">存檔名稱</label>
+          <label className="text-xs text-ink-4 mb-1.5 block">存檔名稱</label>
           <input
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleSave()}
-            className="w-full px-4 py-2.5 bg-slate-900/60 border border-slate-700/50 rounded-xl text-sm focus:outline-none focus:border-amber-500/50 transition-colors"
+            className="w-full px-4 py-2.5 bg-night-2/60 border border-ink-3/50 rounded-xl text-sm focus:outline-none focus:border-cinnabar-2/50 transition-colors"
             placeholder="輸入存檔名稱..."
             autoFocus
           />
@@ -86,7 +86,7 @@ export default function SaveGameMenu({ isOpen, onClose, onSave }: Props) {
         <button
           onClick={handleSave}
           disabled={!name.trim()}
-          className="w-full py-3 rounded-xl bg-gradient-to-r from-amber-700 to-amber-600 text-white font-medium text-sm hover:shadow-amber-900/30 hover:scale-[1.01] active:scale-[0.99] transition-all disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2 mb-5"
+          className="w-full py-3 rounded-xl bg-gradient-to-r from-cinnabar to-cinnabar-2 text-white font-medium text-sm hover:shadow-cinnabar/30 hover:scale-[1.01] active:scale-[0.99] transition-all disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2 mb-5"
         >
           <Save className="w-4 h-4" />
           儲存新存檔
@@ -95,21 +95,21 @@ export default function SaveGameMenu({ isOpen, onClose, onSave }: Props) {
         {/* 現有存檔（可覆蓋） */}
         {saves.length > 0 && (
           <>
-            <div className="text-xs text-slate-500 mb-2">或覆蓋現有存檔</div>
+            <div className="text-xs text-ink-4 mb-2">或覆蓋現有存檔</div>
             <div className="flex-1 overflow-y-auto space-y-2 pr-1 scrollbar-hide">
               {saves.map((save) => {
                 const isOverwriting = overwritingId === save.id;
                 return (
                   <div
                     key={save.id}
-                    className="group flex items-center gap-3 p-3 rounded-xl bg-slate-800/40 hover:bg-slate-800/70 border border-slate-700/30 transition-all"
+                    className="group flex items-center gap-3 p-3 rounded-xl bg-night-3/40 hover:bg-night-3/70 border border-ink-3/30 transition-all"
                   >
-                    <div className="w-10 h-10 rounded-lg bg-amber-900/30 flex items-center justify-center shrink-0">
-                      <Save className="w-4 h-4 text-amber-400" />
+                    <div className="w-10 h-10 rounded-lg bg-cinnabar-deep/30 flex items-center justify-center shrink-0">
+                      <Save className="w-4 h-4 text-cinnabar-2" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium text-slate-200 truncate">{save.name}</p>
-                      <div className="flex items-center gap-2 text-xs text-slate-500 mt-0.5">
+                      <p className="text-sm font-medium text-paper truncate">{save.name}</p>
+                      <div className="flex items-center gap-2 text-xs text-ink-4 mt-0.5">
                         <span className="flex items-center gap-1">
                           <Clock className="w-3 h-3" />
                           {new Date(save.savedAt).toLocaleString('zh-TW', {
@@ -128,7 +128,7 @@ export default function SaveGameMenu({ isOpen, onClose, onSave }: Props) {
                       className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
                         isOverwriting
                           ? 'bg-red-700/80 text-white'
-                          : 'bg-slate-700/50 text-slate-300 hover:bg-slate-600/50'
+                          : 'bg-ink-2/50 text-paper-3 hover:bg-ink-3/50'
                       }`}
                     >
                       {isOverwriting ? (

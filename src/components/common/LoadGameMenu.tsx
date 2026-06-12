@@ -59,14 +59,14 @@ export default function LoadGameMenu({ isOpen, onClose, onLoad }: Props) {
       <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={onClose} />
       <div className="relative z-10 w-full max-w-md glass rounded-2xl p-6 max-h-[80vh] flex flex-col animate-slide-up">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-xl font-bold text-slate-100">讀取存檔</h2>
-          <button onClick={onClose} className="p-2 rounded-lg hover:bg-slate-800/60 transition-colors">
-            <X className="w-5 h-5 text-slate-400" />
+          <h2 className="text-xl font-bold text-paper-2">讀取存檔</h2>
+          <button onClick={onClose} className="p-2 rounded-lg hover:bg-night-3/60 transition-colors">
+            <X className="w-5 h-5 text-ink-4" />
           </button>
         </div>
 
         {saves.length === 0 ? (
-          <div className="flex-1 flex flex-col items-center justify-center py-12 text-slate-500">
+          <div className="flex-1 flex flex-col items-center justify-center py-12 text-ink-4">
             <BookOpen className="w-12 h-12 mb-3 opacity-30" />
             <p>尚無存檔</p>
             <p className="text-xs mt-1">遊戲進度會自動儲存到本地</p>
@@ -78,16 +78,16 @@ export default function LoadGameMenu({ isOpen, onClose, onLoad }: Props) {
               return (
                 <div
                   key={save.id}
-                  className="group flex items-center gap-3 p-3 rounded-xl bg-slate-800/40 hover:bg-slate-800/70 border border-slate-700/30 transition-all"
+                  className="group flex items-center gap-3 p-3 rounded-xl bg-night-3/40 hover:bg-night-3/70 border border-ink-3/30 transition-all"
                 >
-                  <div className="w-10 h-10 rounded-lg bg-amber-900/30 flex items-center justify-center shrink-0">
+                  <div className="w-10 h-10 rounded-lg bg-cinnabar-deep/30 flex items-center justify-center shrink-0">
                     <span className="text-lg">{'🔍'}</span>
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-slate-200 truncate">
+                    <p className="text-sm font-medium text-paper truncate">
                       {save.storyTitle}
                     </p>
-                    <div className="flex items-center gap-2 text-xs text-slate-500 mt-0.5">
+                    <div className="flex items-center gap-2 text-xs text-ink-4 mt-0.5">
                       <span>{save.characterName}</span>
                       <span>·</span>
                       <span className="flex items-center gap-1">
@@ -107,7 +107,7 @@ export default function LoadGameMenu({ isOpen, onClose, onLoad }: Props) {
                     <button
                       onClick={() => handleLoad(save.id)}
                       disabled={loadingId !== null}
-                      className="px-3 py-1.5 rounded-lg bg-amber-700/80 hover:bg-amber-600 text-white text-xs font-medium transition-colors disabled:opacity-50"
+                      className="px-3 py-1.5 rounded-lg bg-cinnabar/80 hover:bg-cinnabar-2 text-white text-xs font-medium transition-colors disabled:opacity-50"
                     >
                       {loadingId === save.id ? '讀取中...' : '讀取'}
                     </button>
@@ -116,7 +116,7 @@ export default function LoadGameMenu({ isOpen, onClose, onLoad }: Props) {
                       className={`p-1.5 rounded-lg transition-colors ${
                         isDeleting
                           ? 'bg-red-900/50 text-red-400'
-                          : 'text-slate-500 hover:text-red-400 hover:bg-red-900/30 opacity-0 group-hover:opacity-100'
+                          : 'text-ink-4 hover:text-red-400 hover:bg-red-900/30 opacity-0 group-hover:opacity-100'
                       }`}
                     >
                       {isDeleting ? (

@@ -47,38 +47,38 @@ export default function DiscoveryScreen({ story, playerCharacter, apiKey, onStar
             <Eye className="w-8 h-8 text-red-400" />
           </div>
           <h2 className="text-2xl font-bold text-red-300 mb-2">發現</h2>
-          <p className="text-sm text-slate-500">
+          <p className="text-sm text-ink-4">
             你醒了。或者說，你以為你醒了。
           </p>
         </div>
 
-        <div className="glass-card p-5 mb-5 border-red-900/20">
+        <div className="night-card p-5 mb-5 border-red-900/20">
           {loading && !displayText ? (
             <div className="flex flex-col items-center py-4">
               <div className="w-6 h-6 border-2 border-red-600/30 border-t-red-500 rounded-full animate-spin mb-2" />
-              <p className="text-xs text-slate-500">AI 正在撰寫發現場景...</p>
+              <p className="text-xs text-ink-4">AI 正在撰寫發現場景...</p>
             </div>
           ) : (
-            <p className="text-sm text-slate-300 leading-relaxed whitespace-pre-wrap">
+            <p className="text-sm text-paper-3 leading-relaxed whitespace-pre-wrap">
               {displayText}
             </p>
           )}
         </div>
 
         {memoryFragments.length > 0 && (
-          <div className="glass-card p-4 mb-5 border-amber-900/20">
+          <div className="night-card p-4 mb-5 border-cinnabar/20">
             <div className="flex items-center gap-2 mb-3">
-              <AlertTriangle className="w-4 h-4 text-amber-400" />
-              <span className="text-xs font-bold text-amber-400">你記得的事</span>
+              <AlertTriangle className="w-4 h-4 text-cinnabar-2" />
+              <span className="text-xs font-bold text-cinnabar-2">你記得的事</span>
             </div>
             <div className="space-y-2">
               {memoryFragments.map((frag, i) => (
-                <p key={i} className="text-xs text-slate-400 border-l-2 border-amber-700/30 pl-3">
+                <p key={i} className="text-xs text-ink-4 border-l-2 border-cinnabar/30 pl-3">
                   {frag}
                 </p>
               ))}
             </div>
-            <p className="text-xs text-slate-600 mt-3 italic">
+            <p className="text-xs text-ink-3 mt-3 italic">
               但這些記憶是完整的嗎？你確定自己沒有遺漏什麼嗎？
             </p>
           </div>
@@ -87,7 +87,7 @@ export default function DiscoveryScreen({ story, playerCharacter, apiKey, onStar
         <button
           onClick={onStartInvestigation}
           disabled={loading && !displayText}
-          className="w-full py-4 rounded-2xl bg-gradient-to-r from-amber-700 to-amber-600 text-white font-semibold text-lg shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 disabled:opacity-50"
+          className="w-full py-4 rounded-2xl bg-gradient-to-r from-cinnabar to-cinnabar-2 text-white font-semibold text-lg shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 disabled:opacity-50"
         >
           <ArrowRight className="w-5 h-5" />
           開始調查
