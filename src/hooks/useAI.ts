@@ -48,6 +48,9 @@ async function callGemini(
             generationConfig: {
               temperature: config.temperature ?? 0.7,
               maxOutputTokens: config.maxOutputTokens ?? 200,
+              // 關掉 Gemini 2.5 Flash 的預設「思考」，否則思考會吃光 token、
+              // 害真正的回應被砍到剩幾個字（NPC 講話斷句、邏輯怪的真兇）
+              thinkingConfig: { thinkingBudget: 0 },
               ...(config.responseMimeType
                 ? { responseMimeType: config.responseMimeType }
                 : {}),
@@ -144,7 +147,7 @@ export function useAI({ apiKey }: UseAIOptions) {
         const cached = getCached(cacheKey);
         if (cached) return cached;
 
-        const result = await callGemini(apiKey, prompt, { temperature: 0.85, maxOutputTokens: 200 });
+        const result = await callGemini(apiKey, prompt, { temperature: 0.85, maxOutputTokens: 400 });
         setCached(cacheKey, result);
         return result;
       } catch (e: unknown) {
