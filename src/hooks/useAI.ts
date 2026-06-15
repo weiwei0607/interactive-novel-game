@@ -141,7 +141,7 @@ export function useAI({ apiKey }: UseAIOptions) {
           .map((h) => `${h.role === 'user' ? '玩家' : npc.name}：${h.content}`)
           .join('\n');
 
-        const prompt = `${systemPrompt}\n\n【對話紀錄】\n${historyText}\n\n玩家：${userMessage}\n\n${npc.name}：（請以第一人稱回應，80字內，符合角色性格與秘密設定）`;
+        const prompt = `${systemPrompt}\n\n【對話紀錄】\n${historyText}\n\n玩家：${userMessage}\n\n（請扮演 ${npc.name} 回應，80字內，符合角色性格與秘密設定。格式要求：說出口的「對話」用第一人稱「我」並加上「」引號；動作、神態、心理描寫則用第三人稱、以「${npc.name}」或「她/他」當主詞，像小說旁白。不要在開頭寫自己的名字加冒號。）`;
 
         const cacheKey = `${npc.id}|${userMessage}`;
         const cached = getCached(cacheKey);
