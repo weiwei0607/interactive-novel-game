@@ -96,6 +96,7 @@ export default function PrologueScreen({ story, playerCharacter, apiKey, onEndPr
             <h3 className="text-xs text-ink-4 uppercase tracking-wider mb-2">在場的人</h3>
             <div className="space-y-2">
               {selectedLocation.npcs.map((npcId) => {
+                if (npcId === playerCharacter.id) return null; // 不顯示玩家自己（不能跟自己對話）
                 const npc = prologueNpcs.find((n) => n.id === npcId);
                 if (!npc) return null;
                 return (
@@ -152,7 +153,7 @@ export default function PrologueScreen({ story, playerCharacter, apiKey, onEndPr
         <div className="mb-5">
           <h3 className="text-xs text-ink-4 uppercase tracking-wider mb-2">在場的人</h3>
           <div className="space-y-2">
-            {prologueNpcs.map((npc) => (
+            {prologueNpcs.filter((npc) => npc.id !== playerCharacter.id).map((npc) => (
               <button
                 key={npc.id}
                 onClick={() => handleTalk(npc)}

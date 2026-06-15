@@ -225,9 +225,14 @@ export default function GameplayScreen({ story, playerCharacter, apiKey, onAccus
 
   const handleTalkToNpc = useCallback((npc: NPC) => {
     play('tap');
+    // 點到自己角色 → 開個人檔案，不要跟自己對話
+    if (npc.id === playerCharacter.id) {
+      setSubView('profile');
+      return;
+    }
     setSelectedNpc(npc);
     setSubView('dialog');
-  }, [play]);
+  }, [play, playerCharacter.id]);
 
   const handleCollectClue = useCallback((clue: Clue) => {
     if (!collectedClues.includes(clue.id)) {
