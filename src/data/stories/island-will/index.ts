@@ -424,11 +424,12 @@ export const islandWillStory: Story = {
       'choices': [
         {
           'id': 'iw-choice-1',
+          'forCharacterId': 'su-wanqing',
           'condition': {
             'type': 'clue',
             'clueId': 'will-draft'
           },
-          'question': '你找到了林子衡的遺囑草稿，上面把所有財產留給了前妻的兒子。作為現任妻子，你一分都沒有。草稿的邊緣有你的指甲痕跡。你會怎麼做？',
+          'question': '你找到了林子衡的遺囑草稿，上面把所有財產留給了你藏在鄉下的兒子以外的人。草稿的邊緣有你的指甲痕跡。你會怎麼做？',
           'options': [
             { 'label': '修改遺囑，讓自己成為唯一繼承人', 'value': 'forge' },
             { 'label': '銷毀草稿，假裝從未存在', 'value': 'burn' },
@@ -437,6 +438,7 @@ export const islandWillStory: Story = {
         },
         {
           'id': 'iw-choice-2',
+          'forCharacterId': 'huang-yating',
           'condition': {
             'type': 'location',
             'locationId': 'terrace'

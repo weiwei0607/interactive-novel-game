@@ -60,7 +60,7 @@ export default function DiscoveryScreen({ story, playerCharacter, apiKey, onStar
             </div>
           ) : (
             <p className="text-sm text-paper-3 leading-relaxed whitespace-pre-wrap">
-              {displayText}
+              {displayText || '你睜開眼，四周一片死寂。有什麼事情已經發生了——你能感覺到空氣裡那股不對勁。'}
             </p>
           )}
         </div>

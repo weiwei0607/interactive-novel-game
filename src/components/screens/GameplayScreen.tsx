@@ -73,9 +73,12 @@ export default function GameplayScreen({ story, playerCharacter, apiKey, onAccus
       condition: { type: string; clueId?: string; locationId?: string };
       question: string;
       options: { label: string; value: string }[];
+      forCharacterId?: string;
     }>;
     for (const choice of choices) {
       if (shownKeyChoices.has(choice.id) || activeKeyChoice) break;
+      // 抉擇若綁定特定角色，只有扮演該角色時才會觸發（避免別的角色看到不屬於他的抉擇）
+      if (choice.forCharacterId && choice.forCharacterId !== playerCharacter.id) continue;
       const cond = choice.condition;
       let met = false;
       if (cond.type === 'clue' && cond.clueId && collectedClues.includes(cond.clueId)) met = true;
@@ -87,7 +90,7 @@ export default function GameplayScreen({ story, playerCharacter, apiKey, onAccus
         break;
       }
     }
-  }, [collectedClues, visitedLocations, story.specialMechanic, shownKeyChoices, activeKeyChoice, play]);
+  }, [collectedClues, visitedLocations, story.specialMechanic, shownKeyChoices, activeKeyChoice, play, playerCharacter.id]);
 
   // 干擾事件處理
   useEffect(() => {
