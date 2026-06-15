@@ -56,7 +56,7 @@ export default function DiscoveryScreen({ story, playerCharacter, apiKey, onStar
           {loading && !displayText ? (
             <div className="flex flex-col items-center py-4">
               <div className="w-6 h-6 border-2 border-red-600/30 border-t-red-500 rounded-full animate-spin mb-2" />
-              <p className="text-xs text-ink-4">AI 正在撰寫發現場景...</p>
+              <p className="text-xs text-ink-4">你的目光落在某處……</p>
             </div>
           ) : (
             <p className="text-sm text-paper-3 leading-relaxed whitespace-pre-wrap">

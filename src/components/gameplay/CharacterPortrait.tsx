@@ -97,7 +97,9 @@ export default function CharacterPortrait({
   const lookDark = arch === 'victim';
 
   const skin = lookDark ? '#e9e5d7' : pick(r, PAPER_FACE);
-  const hair = lookDark ? '#2e3338' : pick(r, HAIR_INK);
+  // 只有身分明顯年長的角色才可能抽到灰白髮，否則一律深色（避免年輕角色被畫成老人）
+  const elderly = /老|伯|爺|婆|嬤|奶|翁|退休|管家|長者/.test((role || '') + '|' + (name || ''));
+  const hair = lookDark ? '#2e3338' : pick(r, elderly ? HAIR_INK : HAIR_INK.slice(0, 4));
   const accent = pick(r, ACCENTS);
 
   // 臉部參數

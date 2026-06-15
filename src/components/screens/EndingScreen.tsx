@@ -75,6 +75,19 @@ export default function EndingScreen({ story, playerCharacter, accusedId, apiKey
           setNewAchievements(newlyEarned);
         }
       }
+    }).catch((err) => {
+      // 任何失敗都不讓結局畫面 crash，退回確定性結局
+      console.error('結局生成失敗，使用備用結局:', err);
+      if (!mounted) return;
+      clearTimeout(timeoutRef.current);
+      const isCorrect = accusedId === story.truth.murdererId;
+      const evidenceRatio = collectedClues.length / Math.max(1, story.clues.length);
+      let tier: 'perfect' | 'correct_but_blind' | 'wrong_with_evidence' | 'wrong_and_blind' | 'struck_down' | 'killer_escaped' | 'agenda_complete' = isCorrect
+        ? (evidenceRatio >= 0.7 ? 'perfect' : 'correct_but_blind')
+        : (evidenceRatio >= 0.5 ? 'wrong_with_evidence' : 'wrong_and_blind');
+      if (specialFlags.endingCause === 'struck_down') tier = 'struck_down';
+      else if (specialFlags.endingCause === 'killer_escaped') tier = 'killer_escaped';
+      setEnding({ isCorrect, ending: story.truth.fullExplanation, endingTier: tier });
     });
 
     return () => {
@@ -96,8 +109,8 @@ export default function EndingScreen({ story, playerCharacter, accusedId, apiKey
     return (
       <div className="min-h-screen flex flex-col items-center justify-center px-6 animate-fade-in">
         <div className="w-10 h-10 border-4 border-cinnabar-2/30 border-t-cinnabar-2 rounded-full animate-spin mb-4" />
-        <p className="text-ink-4 text-sm">AI 正在撰寫結局...</p>
-        <p className="text-xs text-ink-3 mt-2">約需 5-10 秒</p>
+        <p className="text-ink-4 text-sm">真相正在浮現……</p>
+        <p className="text-xs text-ink-3 mt-2">所有線索正在收攏成最後一章</p>
       </div>
     );
   }
